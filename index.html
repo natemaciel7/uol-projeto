@@ -9,7 +9,7 @@
 </head>
 <body>
     <main class="container">
-        <!-- Header com logo e botão de participantes -->
+
         <header>
             <img src="foto.png" alt="Logo Bate-Papo UOL" class="logo">
             <button id="toggle-participants" class="participants-btn">
@@ -17,14 +17,11 @@
             </button>
         </header>
 
-        <!-- Janela do Chat -->
         <section id="chat-window">
             <ul id="messages">
-                <!-- Mensagens aparecem dinamicamente aqui -->
             </ul>
         </section>
 
-        <!-- Footer para envio de mensagem -->
         <footer>
             <form id="message-form">
                 <input type="text" id="message-input" placeholder="Escreva aqui..." required>
@@ -35,14 +32,12 @@
             <small id="message-status">Enviando para Todos (Público)</small>
         </footer>
 
-        <!-- Sidebar para Lista de Participantes -->
         <aside id="sidebar" class="hidden">
             <div class="sidebar-header">
                 <h2>Participantes</h2>
                 <button id="close-sidebar">X</button>
             </div>
             <ul id="participants">
-                <!-- Lista de participantes -->
             </ul>
         </aside>
     </main>
