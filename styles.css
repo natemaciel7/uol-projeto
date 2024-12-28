@@ -77,15 +77,15 @@ footer {
 footer form {
   display: flex;
   align-items: center;
-  gap: 5px; /* Espaçamento entre o textarea e o botão */
+  gap: 5px;
 }
 
 footer input {
-  flex-grow: 1; /* Faz com que o input ocupe o máximo de espaço */
-  padding: 8px; /* Espaçamento interno */
+  flex-grow: 1; 
+  padding: 8px; 
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px; /* Texto menor para economizar espaço */
+  font-size: 14px; 
 }
 
 footer button {
@@ -95,7 +95,7 @@ footer button {
 }
 
 footer button img {
-  width: 20px; /* Reduz o tamanho do ícone */
+  width: 20px; 
   height: 20px;
 }
 
