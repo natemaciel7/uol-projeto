@@ -9,36 +9,37 @@
 </head>
 <body>
     <main class="container">
-
+        <!-- Cabeçalho -->
         <header>
-            <img src="foto.png" alt="Logo Bate-Papo UOL" class="logo">
-            <button id="toggle-participants" class="participants-btn">
+            <img src="foto.png" alt="Logo Bate-Papo UOL" class="logo" onerror="this.style.display='none';">
+            <button id="toggle-participants" class="participants-btn" aria-label="Mostrar participantes">
                 <img src="people 1.png" alt="Participantes">
             </button>
         </header>
 
+        <!--  Chat -->
         <section id="chat-window">
-            <ul id="messages">
-            </ul>
+            <ul id="messages"></ul>
         </section>
 
+        <!--  formulário -->
         <footer>
             <form id="message-form">
                 <input type="text" id="message-input" placeholder="Escreva aqui..." required>
-                <button type="submit">
-                    <img src="Vector.png" alt="Enviar">
+                <button type="submit" aria-label="Enviar mensagem">
+                    <img src="Vector.png" alt="Enviar" onerror="this.style.display='none';">
                 </button>
             </form>
             <small id="message-status">Enviando para Todos (Público)</small>
         </footer>
 
-        <aside id="sidebar" class="hidden">
+        <!-- Barra lateral  -->
+        <aside id="sidebar">
             <div class="sidebar-header">
-                <h2>Participantes</h2>
-                <button id="close-sidebar">X</button>
+                <h2>Escolha um contato para enviar mensagem:</h2>
+                <button id="close-sidebar" aria-label="Fechar lista de participantes">X</button>
             </div>
-            <ul id="participants">
-            </ul>
+            <ul id="participants"></ul>
         </aside>
     </main>
     <script src="script.js"></script>
