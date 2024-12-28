@@ -9,37 +9,46 @@
 </head>
 <body>
     <main class="container">
-        <!-- Cabeçalho -->
         <header>
-            <img src="foto.png" alt="Logo Bate-Papo UOL" class="logo" onerror="this.style.display='none';">
-            <button id="toggle-participants" class="participants-btn" aria-label="Mostrar participantes">
+            <img src="foto.png" alt="Logo Bate-Papo UOL" class="logo">
+            <button id="toggle-participants" class="participants-btn">
                 <img src="people 1.png" alt="Participantes">
             </button>
         </header>
 
-        <!--  Chat -->
         <section id="chat-window">
             <ul id="messages"></ul>
         </section>
 
-        <!--  formulário -->
         <footer>
             <form id="message-form">
                 <input type="text" id="message-input" placeholder="Escreva aqui..." required>
-                <button type="submit" aria-label="Enviar mensagem">
-                    <img src="Vector.png" alt="Enviar" onerror="this.style.display='none';">
+                <button type="submit">
+                    <img src="Vector.png" alt="Enviar">
                 </button>
             </form>
             <small id="message-status">Enviando para Todos (Público)</small>
         </footer>
 
-        <!-- Barra lateral  -->
         <aside id="sidebar">
             <div class="sidebar-header">
                 <h2>Escolha um contato para enviar mensagem:</h2>
-                <button id="close-sidebar" aria-label="Fechar lista de participantes">X</button>
+                <button id="close-sidebar">X</button>
             </div>
-            <ul id="participants"></ul>
+            <ul id="participants">
+                <!-- Participantes serão listados aqui dinamicamente -->
+            </ul>
+            <div class="visibility-options">
+                <h3>Escolha a visibilidade:</h3>
+                <div>
+                    <input type="radio" id="public" name="visibility" value="public" checked>
+                    <label for="public">Público</label>
+                </div>
+                <div>
+                    <input type="radio" id="private" name="visibility" value="private">
+                    <label for="private">Reservadamente</label>
+                </div>
+            </div>
         </aside>
     </main>
     <script src="script.js"></script>
