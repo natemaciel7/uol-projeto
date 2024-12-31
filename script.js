@@ -1,14 +1,20 @@
 const API_BASE = "https://mock-api.driven.com.br/api/v6/uol";
-const roomUUID = "5ae0a056-2ae8-465f-8426-ff455106acaf"; 
+const roomUUID = "5ae0a056-2ae8-465f-8426-ff455106acaf";
 let userName = "";
 let currentRecipient = "Todos";
 let messageType = "public";
-
 
 function selectRecipient(name) {
     currentRecipient = name;
     document.getElementById("message-status").textContent = `Enviando para ${name} (${messageType === "private" ? "Reservadamente" : "Público"})`;
 }
+
+document.querySelectorAll('input[name="visibility"]').forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+        messageType = event.target.value;
+        document.getElementById("message-status").textContent = `Enviando para ${currentRecipient} (${messageType === "private" ? "Reservadamente" : "Público"})`;
+    });
+});
 
 document.getElementById("message-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -31,23 +37,28 @@ function askName() {
     }
     joinChat();
 }
-async function loadParticipants() {
-    const { data } = await axios.get(`${API_BASE}/participants/${roomUUID}`);
-    const participantsList = document.getElementById("participants");
-    participantsList.innerHTML = '<li onclick="selectRecipient(\'Todos\')">Todos</li>';
-    data.forEach(participant => {
-        const li = document.createElement("li");
-        li.textContent = participant.name;
-        li.onclick = () => selectRecipient(participant.name);
-        participantsList.appendChild(li);
-    });
-}
 
+async function loadParticipants() {
+    try {
+        const { data } = await axios.get(`${API_BASE}/participants/${roomUUID}`);
+        const participantsList = document.getElementById("participants");
+        participantsList.innerHTML = '<li onclick="selectRecipient(\'Todos\')">Todos</li>';
+        data.forEach(participant => {
+            const li = document.createElement("li");
+            li.textContent = participant.name;
+            li.onclick = () => selectRecipient(participant.name);
+            participantsList.appendChild(li);
+        });
+    } catch (error) {
+        console.error("Erro ao carregar participantes:", error.response?.data || error.message);
+    }
+}
 
 async function joinChat() {
     try {
         await axios.post(`${API_BASE}/participants/${roomUUID}`, { name: userName });
         keepConnection();
+        loadParticipants();
         loadMessages();
     } catch (error) {
         alert("Nome já em uso. Escolha outro.");
@@ -60,7 +71,7 @@ async function loadMessages() {
         const { data } = await axios.get(`${API_BASE}/messages/${roomUUID}`);
         renderMessages(data);
     } catch (error) {
-        console.error("Erro ao buscar mensagens.", error);
+        console.error("Erro ao buscar mensagens:", error.response?.data || error.message);
     }
 }
 
@@ -75,7 +86,7 @@ function renderMessages(messages) {
     });
     chatWindow.lastElementChild?.scrollIntoView();
 }
-// conexão ativa
+
 function keepConnection() {
     if (!userName || userName.trim() === "") {
         console.error("Erro: Nome de usuário não definido. Não é possível manter conexão.");
@@ -95,20 +106,6 @@ function keepConnection() {
     }, 5000);
 }
 
-document.getElementById("message-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const input = document.getElementById("message-input");
-    const message = {
-        from: userName,
-        to: "Todos",
-        text: input.value,
-        type: "message",
-    };
-    input.value = "";
-    await axios.post(`${API_BASE}/messages/${roomUUID}`, message);
-    loadMessages();
-});
-
 const sidebar = document.getElementById("sidebar");
 
 document.getElementById("toggle-participants").addEventListener("click", () => {
@@ -117,6 +114,5 @@ document.getElementById("toggle-participants").addEventListener("click", () => {
 document.getElementById("close-sidebar").addEventListener("click", () => {
     sidebar.classList.remove("visible");
 });
-
 
 askName();
