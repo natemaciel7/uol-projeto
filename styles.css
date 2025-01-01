@@ -35,11 +35,6 @@ header .logo {
   width: 100px;
 }
 
-.participants-btn img {
-  width: auto;
-}
-
-
 #chat-window {
   flex-grow: 1;
   overflow-y: auto;
@@ -70,7 +65,7 @@ header .logo {
 }
 
 footer {
-  background-color: #f8f9fa;
+  background-color: #ffff;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -85,6 +80,7 @@ footer input {
   flex-grow: 1;
   font-style: italic;
   color: #000000;
+  border: none;
   
 }
 footer button {
@@ -97,7 +93,6 @@ footer button {
 footer button img {
   width: 20px;
 }
-
 
 #sidebar {
   position: fixed;
@@ -122,16 +117,14 @@ footer button img {
   align-items: center;
 }
 
-#participants {
-  list-style: none;
-  padding: 0;
-
-}
-
 #participants li {
   padding: 8px;
-
   cursor: pointer;
+}
+
+.participants-btn {
+  border: none;
+  background-color: white;
 }
 
 .visibility-options {
