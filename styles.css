@@ -8,7 +8,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #f3f3f3;
 }
 
 .container {
@@ -26,6 +26,9 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
 
 }
 header .logo {
@@ -41,7 +44,7 @@ header .logo {
   flex-grow: 1;
   overflow-y: auto;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #f3f3f3;
 }
 
 #messages {
@@ -49,7 +52,7 @@ header .logo {
 }
 
 #messages li {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   padding: 10px;
   word-wrap: break-word;
 }
@@ -68,19 +71,21 @@ header .logo {
 
 footer {
   background-color: #f8f9fa;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-
 }
 
 footer form {
+  border: none;
   display: flex;
 }
 
 footer input {
   flex-grow: 1;
   font-style: italic;
+  color: #000000;
+  
 }
 footer button {
   border: none;
@@ -92,9 +97,7 @@ footer button {
 footer button img {
   width: 20px;
 }
-footer small {
-  color: gray;
-}
+
 
 #sidebar {
   position: fixed;
