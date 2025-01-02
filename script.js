@@ -60,12 +60,12 @@ async function joinChat() {
         keepConnection();
         loadParticipants();
         loadMessages();
+        autoLoadMessages(); 
     } catch (error) {
         alert("Nome já em uso. Escolha outro.");
         askName();
     }
 }
-
 async function loadMessages() {
     try {
         const { data } = await axios.get(`${API_BASE}/messages/${roomUUID}`);
@@ -74,10 +74,15 @@ async function loadMessages() {
         console.error("Erro ao buscar mensagens:", error.response?.data || error.message);
     }
 }
+function autoLoadMessages() {
+    setInterval(loadMessages, 3000);
+}
+
+
 
 function renderMessages(messages) {
     const chatWindow = document.getElementById("messages");
-    chatWindow.innerHTML = "";
+    chatWindow.innerHTML = ""; 
     messages.forEach(msg => {
         const li = document.createElement("li");
         li.classList.add(msg.type);
